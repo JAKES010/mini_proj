@@ -19,16 +19,20 @@ if not os.path.exists(filename) or os.path.getsize(filename) == 0:
         json.dump(default_data,file)
 
 data = {}
+note = 0
 
 if p_command == "Add" :
     with open(filename,"r") as file :
         data = json.load(file)
-        for trash in  data["tasks"] :
-            print(trash)
+
+        for item in  data["tasks"] :
+            if item["id"] > note:
+                note = item["id"]
+                print(note)
 
         info = {"id" : 1 , "description" : tasks}
         data["tasks"].append(info)
         with open(filename, "w") as file:
             json.dump(data,file)
 
-print(f"ADDED: {info}")
+        print(f"ADDED: {info}")
