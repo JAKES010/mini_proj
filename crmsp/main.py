@@ -15,14 +15,6 @@ def borrow(fellow_id, resource_id, qty):
     if qty > resource["___"]:
         return "Not enough stock"
 
-    # all checks passed: now change data
-    resource["available"] = resource["available"] - qty
-    record = find_record(fellow_id, resource_id)
-    if record is None:
-        borrow_records.append({"fellow_id": fellow_id, "resource_id": resource_id, "count": qty})
-    else:
-        record["count"] = record["count"] + qty
-    return "Borrowed successfully"
 
 def find_resource(resource_id):
     for resource in resources:
